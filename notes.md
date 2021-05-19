@@ -19,7 +19,9 @@
   * belongs_to :category
   * has_many :comments
   * has_many :users, through :comments
+    * validates :title, presence: true
     * validates :content, presence: true
+      * title
       * content
       * user_id
       * category_id
