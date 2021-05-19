@@ -15,9 +15,9 @@
       * rank
 
 # Post
-  * belongs_to :user
+  * belongs_to :member
   * has_many :comments
-  * has_many :users, through :comments
+  * has_many :members, through :comments
     * validates :title, presence: true
     * validates :content, presence: true
     * validates :category, presence: true
@@ -27,7 +27,7 @@
       * user_id
 
 # Comment
-  * belongs_to :user
+  * belongs_to :member
   * belongs_to :post
     * validates :content, presence: true
       * content
