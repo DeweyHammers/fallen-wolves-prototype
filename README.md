@@ -1,3 +1,3 @@
 # README
 
-This is the prototype for the Faleen Wolves Guild using Ruby on Rails framework
+This is the prototype for the Fallen Wolves Guild using Ruby on Rails framework
