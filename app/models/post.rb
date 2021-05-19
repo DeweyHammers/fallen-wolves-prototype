@@ -1,8 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :category
   has_many :comments
-  has_many :users, through :comments
+  has_many :users, through: :comments
   validates :title, presence: true
   validates :content, presence: true
 end

@@ -16,7 +16,6 @@
 
 # Post
   * belongs_to :user
-  * belongs_to :category
   * has_many :comments
   * has_many :users, through :comments
     * validates :title, presence: true
@@ -24,7 +23,6 @@
       * title
       * content
       * user_id
-      * category_id
 
 # Comment
   * belongs_to :user
@@ -33,8 +31,3 @@
       * content
       * post_id
       * user_id
-
-# Category
-  * has_many :posts
-    * name
-
