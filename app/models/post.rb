@@ -4,4 +4,5 @@ class Post < ApplicationRecord
   has_many :users, through: :comments
   validates :title, presence: true
   validates :content, presence: true
+  validates :category, presence: true
 end

@@ -20,8 +20,10 @@
   * has_many :users, through :comments
     * validates :title, presence: true
     * validates :content, presence: true
+    * validates :category, presence: true
       * title
       * content
+      * category
       * user_id
 
 # Comment
