@@ -1,5 +1,3 @@
 <% @members.all.each do |member| %>
-  <%= link_to image_tag(url_for(member.avatar),  style: 'height:100px;width:100px;'), member %>
-  <h1><%= member.username %></h1>
-  <h3><%= member.rank %></h3>
+  <%= render partial: '/members/partails/member_info', locals: { member: member, style: 'height:100px;width:100px;'} %>
 <% end %>
