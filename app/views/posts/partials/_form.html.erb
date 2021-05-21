@@ -1,0 +1,22 @@
+<%= form_for @post do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area(:content, size: '20x10') %>
+  </div>
+  <div>
+    <%= f.label :category %>
+    <%= f.select :category, 
+      [['General', 'general'], 
+      ['Crafting', 'crafting'],
+      ['Gathering', 'gathering'],
+      ['Pvp', 'pvp'], 
+      ['Pve', 'pve']] %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,1 +1,15 @@
-<%= render 'layouts/partials/navbar' %>
+<% @posts.each do |category, posts| %>
+  <div>
+    <h1><%= category.capitalize() %></h1>
+    <% if !posts.include?([]) %>
+      <table>
+        <%= render 'posts/partials/table_head' %>
+        <% posts.each do |post| %>
+          <%= render partial: 'posts/partials/table_body', locals: {post: post} %>   
+        <% end %>
+      </table>
+    <% else %>
+      <h3>There is no posts in the Category</h3>
+    <% end %>
+  </div>
+<% end %>
