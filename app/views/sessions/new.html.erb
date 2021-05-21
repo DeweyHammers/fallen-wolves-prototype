@@ -1,0 +1,18 @@
+<h1>Login</h1>
+
+<%= form_tag '/login' do  %>
+  <div>
+    <%= label_tag 'member_username', 'Username' %>
+    <%= text_field_tag :'member[username]' %>
+  </div>
+  <div>
+    <%= label_tag 'member_password', 'Password' %>
+    <%= password_field_tag :'member[password]' %>
+  </div>
+  <div>
+    <%= submit_tag 'Login' %>
+  </div>
+  <div>
+    <%= link_to 'Sign in with Google', '#' %>
+  </div>
+<% end %>

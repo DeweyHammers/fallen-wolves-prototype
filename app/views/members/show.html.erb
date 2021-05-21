@@ -1,0 +1,21 @@
+<%= render 'layouts/partials/navbar' %>
+
+<%= image_tag(url_for(@member.avatar), style: 'height:300px;width:300px;') %>
+<h1><%= @member.username %></h1>
+<h3><%= @member.rank %></h3>
+
+<p>Number of Posts made: <%= @member.posts.count %></p>
+<p>Number of Comments made: <%= @member.comments.count %></p>
+
+<% if !@member.posts %>
+  <h4>All posts made: </h4>
+  <% @member.posts.each do |post| %>
+    <%= link_to post.title, post %>
+  <% end %>
+<% else %>
+  <% if current_user.id == @member.id %>
+    <h4>You do not own any posts! Go make some!!!</h4>
+  <% else %>
+    <h4>Does not own any posts</h4>
+  <% end %>
+<% end %>
