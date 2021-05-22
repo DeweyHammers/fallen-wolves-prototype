@@ -17,7 +17,12 @@ class PostsController < ApplicationController
     redirect_to post.save ? post_path(post) : new_post_path(post)
   end
 
-  def show 
+  def show
+    if params[:edit_comment]
+      @post = Post.find_by(id: params[:post_id])
+      @comment = @post.comments.find_by(id: params[:id])
+      @edit_comment = params[:edit_comment]
+    end
   end
 
   def edit
