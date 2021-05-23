@@ -5,7 +5,7 @@
     <p><%= link_to 'Edit', edit_post_path(@post)  %>
     <%= link_to 'Delete', @post, method: :delete %></p>
   <% end %>
-  <%= render partial: '/members/partails/member_info', locals: { member: @post.member, style: 'height:50px;width:50px;'} %>
+  <%= render partial: '/members/partials/member_info', locals: { member: @post.member, style: 'height:50px;width:50px;'} %>
 </div>
 
 <hr>
@@ -15,11 +15,20 @@
   <% if @post.comments != [] %>
     <div>
       <% @post.comments.each do |comment| %>
-        <p><%= comment.content %></p>
+        <p id="<%= comment.id %>_hide_comment" style='display:show'><%= comment.content %></p>
         <% if comment.member.id == current_user.id %>
+          <button id="<%= comment.id %>_toggle_button" style="display:show;">Edit</button>
+          <div id="<%= comment.id %>_edit_comment" style="display:none;">
+            <%= form_tag post_comment_path(@post, comment), method: "put" do %>
+              <%= text_area(:'comment', :content, size: "40x5", value: comment.content) %><br>
+              <%= submit_tag :'Edit Comment' %>
+            <% end %>
+            <button id="<%= comment.id %>_cancel_button">cancel</button>
+          </div>
           <p><%= link_to 'Delete', post_comment_path(@post, comment), method: :delete %></p>
+          <%= render partial: '/comments/partials/show_edit_form', :locals => {id: comment.id } %>
         <% end %>
-        <%= render partial: '/members/partails/member_info', locals: { member: comment.member, style: 'height:50px;width:50px;'} %>
+        <%= render partial: '/members/partials/member_info', locals: { member: comment.member, style: 'height:50px;width:50px;'} %>
       <% end %>
     </div>
   <% else %>
@@ -32,7 +41,7 @@
 <div>
   <h1>Leave a comment</h1>
   <%= form_tag post_comments_path(@post) do %>
-    <%= text_area_tag :'comment[content]' %><br>
+    <%= text_area(:comment, :content, size: "40x5") %><br>
     <%= submit_tag :'Create Comment' %>
   <% end %>
 </div>

@@ -11,18 +11,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.member = current_user
+    @post = Post.new(post_params)
+    @post.member = current_user
 
-    redirect_to post.save ? post_path(post) : new_post_path(post)
+    if @post.save  
+      redirect_to post_path(@post) 
+    else
+      redirect_to new_post_path, alert: @post.errors.full_messages
+    end
   end
 
   def show
-    if params[:edit_comment]
-      @post = Post.find_by(id: params[:post_id])
-      @comment = @post.comments.find_by(id: params[:id])
-      @edit_comment = params[:edit_comment]
-    end
   end
 
   def edit
@@ -30,7 +29,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    redirect_to @post.update(post_params) ? post_path(@post) : edit_post_path(@post)
+    if @post.update(post_params) 
+      redirect_to post_path(@post) 
+    else
+      redirect_to edit_post_path(@post), alert: @post.errors.full_messages
+    end
   end
   
   def destroy

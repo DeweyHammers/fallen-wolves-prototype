@@ -10,10 +10,10 @@ class MembersController < ApplicationController
     member.rank = 'Member'
 
     if member.save
-      session[:member_id] = member.id
+      session[:member_id] = @member.id
       redirect_to posts_path
     else
-      redirect_to new_member_path(member)
+      redirect_to new_member_path, alert: member.errors.full_messages
     end
   end
 

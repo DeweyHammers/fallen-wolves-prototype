@@ -1,7 +1,7 @@
 <% @posts.each do |category, posts| %>
   <div>
     <h1><%= category.capitalize() %></h1>
-    <% if !posts.include?([]) %>
+    <% if !posts.empty? %>
       <table>
         <%= render 'posts/partials/table_head' %>
         <% posts.each do |post| %>
@@ -9,7 +9,7 @@
         <% end %>
       </table>
     <% else %>
-      <h3>There is no posts in the Category</h3>
+      <h3>There is no posts in this Category</h3>
     <% end %>
   </div>
 <% end %>
