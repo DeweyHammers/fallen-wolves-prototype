@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:member_id] = member.id
       redirect_to posts_path
     else
-      redirect_to '/login'
+      redirect_to '/login', alert: 'Either Username or Password was not found'
     end
   end
 
