@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_action :logged_in?, only: [:index, :show]
   before_action :find_member, only: [:show, :edit, :update, :destroy]
-  after_action :add_default_avatar, only: [:create, :update]
+  after_action :add_default_avatar, only: [:create]
 
   def new
     @member = Member.new

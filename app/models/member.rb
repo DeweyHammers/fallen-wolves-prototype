@@ -8,8 +8,4 @@ class Member < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :password, length: { minimum: 8 }, unless: :skip_password
   validates :email, presence: true, uniqueness: true
-
-  def cover_attachment_path
-    cover.attached? ? cover : 'default_profile.png'
-  end
 end
