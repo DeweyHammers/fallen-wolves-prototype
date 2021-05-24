@@ -1,20 +1,21 @@
 class MembersController < ApplicationController
   before_action :logged_in?, only: [:index, :show]
   before_action :find_member, only: [:show, :edit, :update, :destroy]
+  after_action :add_default_avatar, only: [:create, :update]
 
   def new
     @member = Member.new
   end
 
   def create
-    member = Member.new(member_params)
-    member.rank = 'Member'
-
-    if member.save
+    @member = Member.new(member_params)
+    @member.rank = 'Member'
+   
+    if @member.save
       session[:member_id] = @member.id
       redirect_to posts_path
     else
-      redirect_to new_member_path, alert: member.errors
+      redirect_to new_member_path, alert: @member.errors
     end
   end
 
@@ -30,6 +31,7 @@ class MembersController < ApplicationController
   end
 
   def update
+    @member.skip_password = true
     if @member.update(member_params)
       redirect_to member_path(@member)
     else
@@ -38,8 +40,6 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    @member.posts.each {|post| post.delete}
-    @member.comments.each {|comment| comment.delete}
     @member.delete
     session[:member_id] = nil
     redirect_to root_path
@@ -53,5 +53,11 @@ class MembersController < ApplicationController
 
   def find_member
     @member = Member.find_by(id: params[:id])
+  end
+
+  def add_default_avatar
+    unless @member.avatar.attached?
+      @member.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_profile.png")), filename: 'default_profile.png' , content_type: "image/png")
+    end
   end
 end
