@@ -8,6 +8,9 @@
     <p>Number of Posts made: <%= @member.posts.count %></p>
     <p>Number of Comments made: <%= @member.comments.count %></p>
   </div>
+  <% if current_user.id == @member.id %>
+    <%= link_to "Edit Profile", edit_member_path(current_user) %>
+  <% end %>
   <div>
     <% if @member.posts != [] %>
       <h4>All posts made: </h4>

@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     if @post.save  
       redirect_to post_path(@post) 
     else
-      redirect_to new_post_path, alert: @post.errors.full_messages
+      redirect_to new_post_path, alert: @post.errors
     end
   end
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     if @post.update(post_params) 
       redirect_to post_path(@post) 
     else
-      redirect_to edit_post_path(@post), alert: @post.errors.full_messages
+      redirect_to edit_post_path(@post), alert: @post.errors
     end
   end
   

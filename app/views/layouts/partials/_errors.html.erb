@@ -1,3 +1,10 @@
 <% if alert %>
-  <p><%= alert %></p>
+  <% if alert.is_a?(Hash) %>
+    <h4>There was a error with your request:</h4>
+    <% alert.each do |message, error| %>
+      <p><%= message %> <%= error.join %></p>
+    <% end %>
+  <% else %>
+    <p><%= alert %></p>
+  <% end %>
 <% end %>

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       return_to_post
     else
-      flash.alert = @comment.errors.full_messages
+      flash.alert = @comment.errors
       return_to_post
     end
   end
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)  
       return_to_post 
     else
-      flash.alert = @comment.errors.full_messages
+      flash.alert = @comment.errors
       return_to_post 
     end
   end
