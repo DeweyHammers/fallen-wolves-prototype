@@ -1,19 +1,21 @@
-<h1>Login</h1>
-
-<%= form_tag '/login' do  %>
+<div class='text-center position-absolute top-50 start-50 translate-middle form'>
+  <h1>Login</h1>
+  <%= form_tag '/login' do %>
+    <div class='form-floating mb-3'>
+      <%= text_field_tag :'member[username]', '', class: "form-control", placeholder:'username' %>
+      <%= label_tag 'member_username', 'Username' %>
+    </div>
+    <div class='form-floating mb-3'>
+      <%= password_field_tag :'member[password]', '', class: "form-control", placeholder:'password'%>
+      <%= label_tag 'member_password', 'Password' %>
+    </div>
+    <div>
+      <%= submit_tag 'Login', class: "w-100 btn btn-lg btn-dark" %>
+    </div>
+  <% end %>
   <div>
-    <%= label_tag 'member_username', 'Username' %>
-    <%= text_field_tag :'member[username]' %>
+    <%= button_to 'Sign in with Google', '/auth/google_oauth2' %>
   </div>
-  <div>
-    <%= label_tag 'member_password', 'Password' %>
-    <%= password_field_tag :'member[password]' %>
-  </div>
-  <div>
-    <%= submit_tag 'Login' %>
-  </div>
-<% end %>
-<div>
-  <%= button_to 'Sign in with Google', '/auth/google_oauth2' %>
+  <%= link_to 'Back', root_path, class: 'btn btn-primary'%>
 </div>
-<%= link_to 'Back', root_path %>
+

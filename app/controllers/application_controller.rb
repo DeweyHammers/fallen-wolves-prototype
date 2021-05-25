@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
 
-  def home
+  def index
     redirect_to posts_path unless session[:member_id] == nil
   end
 
