@@ -1,27 +1,28 @@
+<h1><%= submit %></h1>
 <%= form_for @member do |f| %>
-  <div>
+  <div class='form-floating mb-3'>
+    <%= f.text_field :username, class: "form-control", placeholder: :username %>
     <%= f.label :username %>
-    <%= f.text_field :username %>
   </div>
-  <div>
+  <div class='form-floating mb-3'>
+    <%= f.text_field :email, class: "form-control", placeholder: :email %>
     <%= f.label :email %>
-    <%= f.text_field :email %>
   </div>
   <% if submit == 'Sign Up' %>
-    <div>
+    <div class='form-floating mb-3'>
+      <%= f.password_field :password, class: "form-control", placeholder: :password %>
       <%= f.label :password %>
-      <%= f.password_field :password %>
     </div>
-    <div>
+    <div class='form-floating mb-3'>
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: :password_confirmation %>
       <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
     </div>
   <% end %>
-  <div>
-    <%= f.label :avatar %> 
-    <%= f.file_field :avatar %>
+  <div class="mb-3">
+    <%= f.label "#{ submit == 'Sign Up' ? 'Upload' : 'Update'} your avater picture", class: "form-label" %> 
+    <%= f.file_field :avatar, class: "form-control" %>
   </div>
   <div>
-    <%= f.submit "#{submit}" %>
+    <%= f.submit "#{submit}", class: "w-100 btn btn-lg btn-outline-dark mb-3" %>
   </div>
 <% end %>

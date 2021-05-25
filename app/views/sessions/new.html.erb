@@ -9,13 +9,15 @@
       <%= password_field_tag :'member[password]', '', class: "form-control", placeholder:'password'%>
       <%= label_tag 'member_password', 'Password' %>
     </div>
-    <div>
-      <%= submit_tag 'Login', class: "w-100 btn btn-lg btn-dark" %>
+    <div class='mb-2'>
+      <%= submit_tag 'Login', class: "w-100 btn btn-lg btn-outline-dark mb-2" %>
     </div>
   <% end %>
   <div>
-    <%= button_to 'Sign in with Google', '/auth/google_oauth2' %>
+    <%= form_tag "/auth/google_oauth2" do %>
+      <%= image_submit_tag("google_signin.png") %>
+    <% end %>
   </div>
-  <%= link_to 'Back', root_path, class: 'btn btn-primary'%>
+  <%= link_to 'Back', root_path, class: 'w-50 btn btn-outline-primary btn-lg'%>
 </div>
 
