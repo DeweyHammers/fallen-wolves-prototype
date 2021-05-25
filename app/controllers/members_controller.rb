@@ -40,7 +40,8 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    @member.delete
+    @member.post_comments.each {|comment| comment.delete}
+    @member.destroy
     session[:member_id] = nil
     redirect_to root_path
   end
