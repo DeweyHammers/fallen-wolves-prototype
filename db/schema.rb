@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_170256) do
     t.string "password_digest"
     t.string "email"
     t.string "rank"
+    t.string "uid"
+    t.string "provider"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

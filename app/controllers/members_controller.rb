@@ -31,7 +31,7 @@ class MembersController < ApplicationController
   end
 
   def update
-    @member.skip_password = true
+    @member.skip_password_length = true
     if @member.update(member_params)
       redirect_to member_path(@member)
     else
@@ -54,11 +54,5 @@ class MembersController < ApplicationController
 
   def find_member
     @member = Member.find_by(id: params[:id])
-  end
-
-  def add_default_avatar
-    unless @member.avatar.attached?
-      @member.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_profile.png")), filename: 'default_profile.png' , content_type: "image/png")
-    end
   end
 end
