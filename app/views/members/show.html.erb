@@ -1,32 +1,46 @@
-<div>
-  <div>
-    <%= image_tag(url_for(@member.avatar), style: "height:300px;width:300px;")%>
-    <h1><%= @member.username %></h1>
-    <h3><%= @member.rank %></h3>
-  </div>
-  <div>
-    <p>Number of Posts made: <%= @member.posts.count %></p>
-    <p>Number of Comments made: <%= @member.comments.count %></p>
-  </div>
-  <% if current_user.id == @member.id %>
-    <%= link_to "Edit Profile", edit_member_path(current_user) %>
-  <% end %>
-  <div>
-    <% if @member.posts != [] %>
-      <h4>All posts made: </h4>
-      <ul>
-        <% @member.posts.each do |post| %>
-          <li>
-            <%= link_to post.title, post %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <% if current_user.id == @member.id %>
-        <h4>You do not own any posts! Go make some!!!</h4>
-      <% else %>
-        <h4>Does not own any posts</h4>
-      <% end %>
-    <% end %>
+<div class='position-absolute top-50 start-50 translate-middle w-75 p-3'>
+  <div class='d-flex justify-content-evenly'>
+    <div class='p-2 bd-highlight'>
+      <div class="card text-white bg-dark mt-5 mb-5" style="width: 18rem;">
+        <%= image_tag(url_for(@member.avatar), class: 'card-img-top')%>
+          <div class="card-body text-center">
+            <h5 class="card-title"><%= @member.username %></h5>
+            <p class="card-text"><%= @member.rank %></p>
+            <p class="card-text">Number of Posts made: <%= @member.posts.count %></p>
+            <p class="card-text">Number of Comments made: <%= @member.comments.count %></p>
+            <% if current_user.id == @member.id %>
+              <%= link_to "Edit Profile", edit_member_path(current_user), class: 'btn btn-outline-secondary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='p-2 bd-highlight'>
+      <table class="table table-dark table-striped table-hover">
+        <thead>
+          <tr class="table-dark">
+            <th>All posts made</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-dark">
+            <% if @member.posts != [] %>
+                <% @member.posts.each do |post| %>
+                  <td><%= link_to post.title, post %></td>
+                  <td><%= post.comments.count %></td>
+                <% end %>
+                <% else %>
+                  <% if current_user.id == @member.id %>
+                    <td>You do not own any posts! Go make some!!!</td>
+                  <% else %>
+                    <td>Does not own any posts</td>
+                <% end %>
+              <% end %>
+            </tr>
+        </tbody>
+      </table>
+     </div>
   </div>
 </div>
+  

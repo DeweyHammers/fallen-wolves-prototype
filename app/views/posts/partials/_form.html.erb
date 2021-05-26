@@ -1,22 +1,26 @@
-<%= form_for @post do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :content %>
-    <%= f.text_area(:content, size: '20x10') %>
-  </div>
-  <div>
-    <%= f.label :category %>
-    <%= f.select :category, 
-      [['General', 'general'], 
-      ['Crafting', 'crafting'],
-      ['Gathering', 'gathering'],
-      ['Pvp', 'pvp'], 
-      ['Pve', 'pve']] %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class='text-center position-absolute top-50 start-50 translate-middle form'>
+  <h1><%= submit %></h1>
+  <%= form_for @post do |f| %>
+    <div class='form-floating mb-3'>
+      <%= f.text_field :title, class: "form-control", placeholder:'Title' %>
+      <%= f.label :title %>
+    </div>
+    <div class="form-floating mb-3">
+      <%= f.text_area(:content, class: "form-control", placeholder:'Content', style:"height: 100px") %>
+      <%= f.label :content %>
+    </div>
+    <div class="form-floating mb-3">
+     <%= f.select :category, 
+        [['General', 'general'], 
+        ['Crafting', 'crafting'],
+        ['Gathering', 'gathering'],
+        ['Pvp', 'pvp'], 
+        ['Pve', 'pve']], {}, { class: 'form-select' } %>
+      <%= f.label :category %>
+    </div>
+    <div>
+      <%= f.submit class: "w-100 btn btn-lg btn-outline-dark mb-2" %>
+    </div>
+  <% end %>
+  <%= link_to 'Back', posts_path, class: 'w-50 btn btn-outline-primary btn-lg'%>
+</div>
