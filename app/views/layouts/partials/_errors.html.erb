@@ -1,10 +1,11 @@
 <% if alert %>
-  <% if alert.is_a?(Hash) %>
-    <h4>There was a error with your request:</h4>
-    <% alert.each do |message, error| %>
-      <p><%= message %> <%= error.join %></p>
+  <div class="text-center alert alert-danger alert" role="alert">
+    <% if alert.is_a?(Hash) %>
+      <% alert.each do |message, error| %>
+        <p><%= message.capitalize %> <%= error.join(" and ") %></p>
+      <% end %>
+    <% else %>
+      <p><%= alert %></p>
     <% end %>
-  <% else %>
-    <p><%= alert %></p>
-  <% end %>
+  </div>
 <% end %>

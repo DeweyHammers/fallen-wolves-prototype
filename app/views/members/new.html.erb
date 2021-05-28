@@ -1,4 +1,4 @@
-<div class='text-center position-absolute top-50 start-50 translate-middle form'>
+<div class='text-center mt-5 form'>
   <%= render partial: '/members/partials/form', locals: {submit: 'Sign Up'} %>
   <%= form_tag "/auth/google_oauth2" do %>
       <%= image_submit_tag("google_signin.png") %>
