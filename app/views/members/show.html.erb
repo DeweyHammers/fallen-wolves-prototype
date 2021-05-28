@@ -1,4 +1,4 @@
-<div class='w-75 p-3'>
+<div class='w-75 p-3 mx-auto'>
   <div class='d-flex justify-content-evenly'>
     <div class='p-2 bd-highlight'>
       <div class="card text-white bg-dark mb-5" style="width: 18rem;">
@@ -8,8 +8,8 @@
             <p class="card-text"><%= @member.rank %></p>
             <p class="card-text">Number of Posts made: <%= @member.posts.count %></p>
             <p class="card-text">Number of Comments made: <%= @member.comments.count %></p>
-            <% if current_user.id == @member.id %>
-              <%= link_to "Edit Profile", edit_member_path(current_user), class: 'btn btn-outline-secondary' %>
+            <% if current_member.id == @member.id %>
+              <%= link_to "Edit Profile", edit_member_path(current_member), class: 'btn btn-outline-secondary' %>
             <% end %>
           </div>
         </div>
@@ -27,11 +27,11 @@
           <tr class="table-dark">
             <% if @member.posts != [] %>
                 <% @member.posts.each do |post| %>
-                  <td><%= link_to post.title, post %></td>
+                  <td><%= link_to post.title, post, class: 'text-decoration-none text-white' %></td>
                   <td><%= post.comments.count %></td>
                 <% end %>
                 <% else %>
-                  <% if current_user.id == @member.id %>
+                  <% if current_member.id == @member.id %>
                     <td>You do not own any posts! Go make some!!!</td>
                   <% else %>
                     <td>Does not own any posts</td>

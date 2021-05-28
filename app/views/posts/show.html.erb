@@ -1,47 +1,61 @@
-<div>
+<div class='text-center border-0 w-75 p-3 mx-auto mb-3 bg-dark text-white'>
   <h1><%= @post.title %></h1>
-  <p><%= @post.content %></p>
-  <% if current_user.id == @post.member.id %>
-    <p><%= link_to 'Edit', edit_post_path(@post)  %>
-    <%= link_to 'Delete', @post, method: :delete %></p>
-  <% end %>
-  <%= render partial: '/members/partials/link_to_member', locals: { member: @post.member, style: 'height:50px;width:50px;'} %>
-</div>
-
-<hr>
-
-<div>
-  <h1>Comments</h1>
-  <% if @post.comments != [] %>
-    <div>
-      <% @post.comments.each do |comment| %>
-        <p id="<%= comment.id %>_hide_comment" style='display:show'><%= comment.content %></p>
-        <% if comment.member.id == current_user.id %>
-          <button id="<%= comment.id %>_toggle_button" style="display:show;">Edit</button>
-          <div id="<%= comment.id %>_edit_comment" style="display:none;">
-            <%= form_tag post_comment_path(@post, comment), method: "put" do %>
-              <%= text_area(:'comment', :content, size: "40x5", value: comment.content) %><br>
-              <%= submit_tag :'Edit Comment' %>
-            <% end %>
-            <button id="<%= comment.id %>_cancel_button">cancel</button>
-          </div>
-          <p><%= link_to 'Delete', post_comment_path(@post, comment), method: :delete %></p>
-          <%= render partial: '/comments/partials/show_edit_form', :locals => {id: comment.id } %>
-        <% end %>
-        <%= render partial: '/members/partials/link_to_member', locals: { member: comment.member, style: 'height:50px;width:50px;'} %>
+    <div class='d-flex justify-content-between mt-2 border-0 bg-secondary'>
+    <div class='border-end border-dark border-3'>
+      <div class='mt-2'>
+        <%= render partial: '/members/partials/link_to_member', locals: { member: @post.member, style: 'height:50px;width:50px;'} %>
+      </div>
+    </div>
+    <div class='mx-auto mt-3'>
+      <p><%= @post.content %></p>
+      <% if current_member.id == @post.member.id %>
+        <p><%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-outline-dark'  %>
+        <%= link_to 'Delete', @post, method: :delete, class: "btn btn-outline-danger" %></p>
       <% end %>
     </div>
+  </div>
+</div>
+<div class='text-center border-0 w-75 p-3 mx-auto mb-3 bg-dark text-white'>
+  <h1>Comments</h1>
+  <% if @post.comments != [] %>
+    <% @post.comments.each do |comment| %>
+      <div class='d-flex justify-content-between mt-2 border-0 bg-secondary'>
+        <div class='border-end border-dark border-3'> 
+          <div class='mt-2'>
+            <%= render partial: '/members/partials/link_to_member', locals: { member: comment.member, style: 'height:50px;width:50px;'} %>
+          </div>
+        </div>
+        <div class='mx-auto mt-3'>
+          <p id="<%= comment.id %>_hide_comment" style='display:show'><%= comment.content %></p>
+          <% if comment.member.id == current_member.id %>
+            <button id="<%= comment.id %>_toggle_button" style="display:show;" class='btn btn-outline-dark mt-5'>Edit</button>
+              <div id="<%= comment.id %>_edit_comment" style="display:none;">
+                <%= form_tag post_comment_path(@post, comment), method: "put" do %>
+                  <div class='form-floating'>
+                    <%= text_area(:comment, :content, style:"height: 150px; width: 550px", class: "form-control", value: comment.content) %><br>
+                    <%= submit_tag :'Edit Comment', class: "btn btn-outline-dark mb-1" %>
+                    <p><%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, class: "btn btn-outline-danger" %></p>
+                  </div>
+                <% end %>
+                <button id="<%= comment.id %>_cancel_button" class='btn btn-outline-dark mb-1'>cancel</button>
+              </div>
+            <%= render partial: '/comments/partials/show_edit_form', :locals => {id: comment.id } %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   <% else %>
-    <h3>There is no comments made yet.</h3>
+    <p>There is no comments made yet.</p>
   <% end %>
 </div>
-
-<hr>
-
-<div>
+<div class='form text-center mb-5'>
   <h1>Leave a comment</h1>
   <%= form_tag post_comments_path(@post) do %>
-    <%= text_area(:comment, :content, size: "40x5") %><br>
-    <%= submit_tag :'Create Comment' %>
+    <div class='form-floating'>
+      <div>
+        <%= text_area(:comment, :content, style:"height: 100px", class: "form-control") %><br>
+      </div>
+      <%= submit_tag :'Create Comment', class: "w-100 btn btn-lg btn-outline-dark mb-2" %>
+    </div>
   <% end %>
 </div>

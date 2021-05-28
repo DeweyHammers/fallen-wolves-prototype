@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   
   def create
     @comment = @post.comments.build(comment_params)
-    @comment.member = current_user
+    @comment.member = current_member
 
     if @comment.save
       return_to_post

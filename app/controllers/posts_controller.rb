@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.member = current_user
+    @post.member = current_member
 
     if @post.save  
       redirect_to post_path(@post) 
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    redirect_to post_path(@post) unless @post.member.id == current_user.id
+    redirect_to post_path(@post) unless @post.member.id == current_member.id
   end
 
   def update

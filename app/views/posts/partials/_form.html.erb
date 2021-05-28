@@ -22,5 +22,5 @@
       <%= f.submit class: "w-100 btn btn-lg btn-outline-dark mb-2" %>
     </div>
   <% end %>
-  <%= link_to 'Back', posts_path, class: 'w-50 btn btn-outline-primary btn-lg'%>
+  <%= link_to 'Back', "#{ submit == 'New Post' ? posts_path : post_path(@post) }", class: 'w-50 btn btn-outline-primary btn-lg'%>
 </div>

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :logged_in?, :current_user
+  helper_method :current_member
 
   def index
     redirect_to posts_path unless session[:member_id] == nil
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless session[:member_id] != nil
   end
 
-  def current_user
+  def current_member
     Member.find_by(id: session[:member_id]) 
   end
 

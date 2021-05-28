@@ -27,7 +27,7 @@ class MembersController < ApplicationController
   end
 
   def edit
-    redirect_to member_path(@member) unless @member.id == current_user.id
+    redirect_to member_path(@member) unless @member.id == current_member.id
   end
 
   def update
