@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :find_post
   before_action :find_comment, only: [:update, :destroy]
-  
+
   def create
     @comment = @post.comments.build(comment_params)
     @comment.member = current_member

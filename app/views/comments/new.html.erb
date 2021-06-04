@@ -1,0 +1,5 @@
+<h1>Make a Comments</h1>
+<%= form_tag post_comments_path(@post) do %>
+  <%= text_area(:comment, :content, style:"height: 100px", class: "form-control") %>
+  <%= submit_tag :'Create Comment' %>
+<% end %>
