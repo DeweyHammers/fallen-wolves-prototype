@@ -5,13 +5,14 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   validates :category, presence: true
+  scope :catergorized_posts, -> (category){ where(category: category) }
 
   CATEGORIES = ['general', 'crafting', 'gathering', 'pvp', 'pve']
 
-  def self.categories
+  def self.posts_catergorized
     Hash.new.tap do |posts|
       CATEGORIES.each do |category|
-        posts[category] = Post.where(category: category)
+        posts[category] = catergorized_posts(category)
       end
     end
   end
