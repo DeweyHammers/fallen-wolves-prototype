@@ -1,0 +1,27 @@
+body {
+  background-color: #777777 !important;
+}
+
+.bg {
+  background-image: url("page_backdrop.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form {
+  background-color: #d9dddc;
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin: auto;
+  border: 1px solid #d9dddc;
+  border-radius: 16px;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+.alert {
+  width: 50%;
+  margin: auto;
+}
