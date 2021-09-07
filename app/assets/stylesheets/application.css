@@ -19,22 +19,22 @@ body {
 }
 
 .bg {
-  background-image: url('page_backdrop.jpg');
-  height: 100%; 
+  background-image: url("page_backdrop.jpg");
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .form {
-  background-color: #D9DDDC;
+  background-color: #d9dddc;
   width: 100%;
   max-width: 400px;
   padding: 15px;
   margin: auto;
-  border: 1px solid #D9DDDC;
+  border: 1px solid #d9dddc;
   border-radius: 16px;
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 }
 
 .alert {
